@@ -1,0 +1,272 @@
+[
+  {
+    "id": "post-001",
+    "content": "Big news! Our autumn collection is here 🍂 Discover your new favorites.",
+    "platforms": ["instagram", "facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-16T10:15:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-002",
+    "content": "Behind the scenes from our latest shoot ✨",
+    "platforms": ["tiktok"],
+    "mediaUrl": "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-17T11:30:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-003",
+    "content": "New product launch! Check out our latest collection 🚀",
+    "platforms": ["instagram", "facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-18T13:45:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-004",
+    "content": "Our weekend offer ends soon! Don't miss out.",
+    "platforms": ["x"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-14T15:00:00.000Z",
+    "status": "failed",
+    "errorMessage": "The simulated publishing request failed. Please try again."
+  },
+  {
+    "id": "post-005",
+    "content": "Fresh styles for a brighter you ✨",
+    "platforms": ["instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-15T17:15:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-006",
+    "content": "Limited stock available. Don't miss out!",
+    "platforms": ["facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-16T19:30:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-007",
+    "content": "A little inspiration for your Wednesday ☀️",
+    "platforms": ["instagram", "tiktok"],
+    "mediaUrl": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-17T09:45:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-008",
+    "content": "Meet the people behind the product.",
+    "platforms": ["facebook", "x"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-18T10:00:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-009",
+    "content": "Your next favorite is waiting for you.",
+    "platforms": ["instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-11T11:15:00.000Z",
+    "status": "failed",
+    "errorMessage": "The simulated publishing request failed. Please try again."
+  },
+  {
+    "id": "post-010",
+    "content": "Three simple ways to make your workflow better.",
+    "platforms": ["x", "facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-12T13:30:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-011",
+    "content": "A closer look at the details that make all the difference.",
+    "platforms": ["instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-16T15:45:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-012",
+    "content": "The little things are what make it special 💛",
+    "platforms": ["facebook"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-14T17:00:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-013",
+    "content": "Save this post for later!",
+    "platforms": ["x"],
+    "mediaUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-15T19:15:00.000Z",
+    "status": "failed",
+    "errorMessage": "The simulated publishing request failed. Please try again."
+  },
+  {
+    "id": "post-014",
+    "content": "Your daily reminder to keep creating.",
+    "platforms": ["tiktok"],
+    "mediaUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-16T09:30:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-015",
+    "content": "Something exciting is coming soon 👀",
+    "platforms": ["instagram", "facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-17T10:45:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-016",
+    "content": "Customer favorite of the week ⭐",
+    "platforms": ["facebook"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-18T11:00:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-017",
+    "content": "Here's how we bring an idea to life.",
+    "platforms": ["tiktok", "instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-11T13:15:00.000Z",
+    "status": "failed",
+    "errorMessage": "The simulated publishing request failed. Please try again."
+  },
+  {
+    "id": "post-018",
+    "content": "A fresh perspective for your feed.",
+    "platforms": ["instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-12T15:30:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-019",
+    "content": "Tag someone who needs to see this!",
+    "platforms": ["x"],
+    "mediaUrl": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-19T17:45:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-020",
+    "content": "Thanks for being part of our community 💙",
+    "platforms": ["facebook", "instagram"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-14T19:00:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-021",
+    "content": "Behind every great product is a great team.",
+    "platforms": ["tiktok"],
+    "mediaUrl": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-15T09:15:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-022",
+    "content": "A quick tip you can use today.",
+    "platforms": ["x"],
+    "mediaUrl": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-16T10:30:00.000Z",
+    "status": "failed",
+    "errorMessage": "The simulated publishing request failed. Please try again."
+  },
+  {
+    "id": "post-023",
+    "content": "Your weekend inspiration starts here.",
+    "platforms": ["instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-17T11:45:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-024",
+    "content": "New week, new ideas. Let's make it count.",
+    "platforms": ["facebook"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-18T13:00:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-025",
+    "content": "A small detail, a big difference.",
+    "platforms": ["instagram", "tiktok"],
+    "mediaUrl": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-15T15:15:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-026",
+    "content": "We made this with you in mind.",
+    "platforms": ["facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-12T17:30:00.000Z",
+    "status": "failed",
+    "errorMessage": "The simulated publishing request failed. Please try again."
+  },
+  {
+    "id": "post-027",
+    "content": "Which one would you choose? Tell us below.",
+    "platforms": ["x"],
+    "mediaUrl": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-17T19:45:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-028",
+    "content": "The best things are worth sharing.",
+    "platforms": ["instagram"],
+    "mediaUrl": null,
+    "scheduledAt": "2026-10-14T09:00:00.000Z",
+    "status": "published",
+    "errorMessage": null
+  },
+  {
+    "id": "post-029",
+    "content": "A peek at what's next for us.",
+    "platforms": ["tiktok", "facebook"],
+    "mediaUrl": "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-15T10:15:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  },
+  {
+    "id": "post-030",
+    "content": "Here's your sign to try something new.",
+    "platforms": ["instagram"],
+    "mediaUrl": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=600&q=80",
+    "scheduledAt": "2026-10-16T11:30:00.000Z",
+    "status": "scheduled",
+    "errorMessage": null
+  }
+]
