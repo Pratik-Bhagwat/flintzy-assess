@@ -1,8 +1,6 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import { DasboardSidebar } from "./(dashboard)/components/dashboard-sidebar";
 import "./globals.css";
 
 const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
@@ -38,13 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         geistHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
-        <SidebarProvider>
-          <DasboardSidebar />
-          {/* <SidebarTrigger /> */}
-          {children}
-        </SidebarProvider>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
