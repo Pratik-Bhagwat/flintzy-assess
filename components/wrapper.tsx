@@ -5,5 +5,9 @@ export const Wrapper = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <div className="w-full max-w-7xl px-4 py-2">{children}</div>;
+  return (
+    <div className="w-full max-w-7xl px-2 py-1 lg:px-4 lg:py-2 mx-auto">
+      {children}
+    </div>
+  );
 };
