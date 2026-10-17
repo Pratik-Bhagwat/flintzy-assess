@@ -6,6 +6,7 @@ import type { Post, PostStatus } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 
 import { PlatformStack } from "./platform-stack";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const statusStyles: Record<PostStatus, { label: string; className: string }> = {
   scheduled: {
@@ -35,6 +36,40 @@ const StatusBadge = ({ status }: { status: PostStatus }) => {
     >
       {label}
     </span>
+  );
+};
+
+export const PostCardSkeleton = () => {
+  return (
+    <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card">
+      <div className="relative aspect-video shrink-0 overflow-hidden bg-muted/40">
+        <Skeleton className="absolute inset-0 rounded-none" />
+
+        <div className="absolute top-3 right-3">
+          <Skeleton className="h-6 w-20 rounded-full" />
+        </div>
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col gap-4 p-4 md:p-5">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center -space-x-2">
+            <Skeleton className="size-8 rounded-full border-2 border-card" />
+            <Skeleton className="size-8 rounded-full border-2 border-card" />
+            <Skeleton className="size-8 rounded-full border-2 border-card" />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-[90%]" />
+          <Skeleton className="h-4 w-[65%]" />
+        </div>
+
+        <div className="mt-auto border-t border-border pt-3">
+          <Skeleton className="h-4 w-36" />
+        </div>
+      </div>
+    </article>
   );
 };
 

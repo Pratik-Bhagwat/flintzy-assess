@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { CalendarClock, CircleCheck, Send, ShieldAlert } from "lucide-react";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { getPosts, type Post, type PostStatus } from "@/lib/posts";
 
 import { FilterBar } from "./filter-bar";
-import { PostSections } from "./post-sections";
+import { PostSections, PostSectionsSkeleton } from "./post-sections";
 import { StatPill, type StatPillProps } from "./stat-pill";
 import { Wrapper } from "@/components/wrapper";
 
@@ -56,9 +58,13 @@ export const DashboardContent = () => {
           ))}
         </div>
 
-        <FilterBar />
+        <Suspense fallback={<Skeleton className="h-11 w-full" />}>
+          <FilterBar />
+        </Suspense>
 
-        <PostSections posts={posts} />
+        <Suspense fallback={<PostSectionsSkeleton />}>
+          <PostSections posts={posts} />
+        </Suspense>
       </div>
     </Wrapper>
   );

@@ -12,7 +12,7 @@ export const PlatformStack = ({ platforms }: { platforms: Platform[] }) => (
         <li
           key={platform}
           title={label}
-          className="flex size-7 items-center justify-center rounded-full border border-border bg-white ring-2 ring-card"
+          className="flex size-7 items-center justify-center rounded-full border border-border bg-background ring-2 ring-card"
         >
           <Image
             src={icon}

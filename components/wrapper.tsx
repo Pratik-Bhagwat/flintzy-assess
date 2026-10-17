@@ -6,7 +6,7 @@ export const Wrapper = ({
   className?: string;
 }) => {
   return (
-    <div className="w-full max-w-7xl px-2 py-1 lg:px-4 lg:py-2 mx-auto">
+    <div className="w-full h-full max-w-7xl px-2 py-1 lg:px-4 lg:py-2 mx-auto">
       {children}
     </div>
   );

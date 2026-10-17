@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { hasActiveFilters } from "@/lib/post-filters";
 import { cn } from "@/lib/utils";
 
 import {
@@ -26,6 +27,7 @@ import {
   type FilterOption,
 } from "./filter-options";
 import { NewPostDialog } from "./composer/new-post-dialog";
+import { setFilterParams, usePostFilters } from "@/hooks/use-post-filters";
 
 const noFocusRing =
   "has-[[data-slot=input-group-control]:focus-visible]:border-border has-[[data-slot=input-group-control]:focus-visible]:ring-0";
@@ -67,15 +69,21 @@ const SearchInput = ({ value, onChange }: SearchInputProps) => (
 type FilterSelectProps = {
   label: string;
   options: FilterOption[];
-  defaultValue?: string;
+  value: string;
+  onChange: (value: string) => void;
 };
 
 const FilterSelect = ({
   label,
   options,
-  defaultValue = "all",
+  value,
+  onChange,
 }: FilterSelectProps) => (
-  <Select items={options} defaultValue={defaultValue}>
+  <Select
+    items={options}
+    value={value}
+    onValueChange={(next) => onChange(next ?? "all")}
+  >
     <SelectTrigger className="min-h-11 min-w-36 flex-1 bg-input md:w-48 md:flex-none">
       <span className="flex min-w-0 items-center gap-1.5">
         <span className="text-muted-foreground">{label}:</span>
@@ -96,17 +104,56 @@ const FilterSelect = ({
 );
 
 export const FilterBar = () => {
-  const [query, setQuery] = useState("");
+  const filters = usePostFilters();
+
+  const [query, setQuery] = useState(filters.q);
+
+  useEffect(() => {
+    const id = setTimeout(() => setFilterParams({ q: query.trim() }), 250);
+    return () => clearTimeout(id);
+  }, [query]);
+
+  const clearAll = () => {
+    setQuery("");
+    setFilterParams({ q: "", status: "all", platform: "all" });
+  };
+
+  const isFiltered = hasActiveFilters({ ...filters, q: query });
 
   return (
-    <div className="flex w-full flex-col gap-3 md:flex-row">
-      <SearchInput value={query} onChange={setQuery} />
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col gap-3 md:flex-row">
+        <SearchInput value={query} onChange={setQuery} />
 
-      <div className="flex flex-wrap gap-2.5 md:flex-nowrap">
-        <FilterSelect label="Status" options={statusOptions} />
-        <FilterSelect label="Platform" options={platformOptions} />
-        <NewPostDialog />
+        <div className="flex flex-wrap gap-2.5 md:flex-nowrap">
+          <FilterSelect
+            label="Status"
+            options={statusOptions}
+            value={filters.status}
+            onChange={(status) => setFilterParams({ status })}
+          />
+          <FilterSelect
+            label="Platform"
+            options={platformOptions}
+            value={filters.platform}
+            onChange={(platform) => setFilterParams({ platform })}
+          />
+          <NewPostDialog />
+        </div>
       </div>
+
+      {isFiltered && (
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={clearAll}
+          className="self-start text-muted-foreground"
+        >
+          <X />
+          Clear filters
+        </Button>
+      )}
     </div>
   );
 };
