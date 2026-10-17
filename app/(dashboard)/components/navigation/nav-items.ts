@@ -8,7 +8,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { name: "Queue", icon: Logs, url: "/" },
-  { name: "Published", icon: Send, url: "/published" },
+  // { name: "Published", icon: Send, url: "/published" },
 ];
 
 export const isRouteActive = (pathname: string, url: string) =>

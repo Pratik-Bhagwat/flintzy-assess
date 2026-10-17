@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <DashboardNav />
-      <SidebarInset className="pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
+      <SidebarInset className="pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-0">
         {children}
       </SidebarInset>
     </SidebarProvider>
