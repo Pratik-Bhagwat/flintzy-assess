@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +25,7 @@ import {
   statusOptions,
   type FilterOption,
 } from "./filter-options";
+import { NewPostDialog } from "./composer/new-post-dialog";
 
 const noFocusRing =
   "has-[[data-slot=input-group-control]:focus-visible]:border-border has-[[data-slot=input-group-control]:focus-visible]:ring-0";
@@ -36,7 +37,7 @@ type SearchInputProps = {
 
 const SearchInput = ({ value, onChange }: SearchInputProps) => (
   <InputGroup
-    className={cn("h-11 border-border p-2 bg-input md:flex-1", noFocusRing)}
+    className={cn("h-11 border-border bg-input p-2 md:flex-1", noFocusRing)}
   >
     <InputGroupInput
       aria-label="Search"
@@ -104,10 +105,7 @@ export const FilterBar = () => {
       <div className="flex flex-wrap gap-2.5 md:flex-nowrap">
         <FilterSelect label="Status" options={statusOptions} />
         <FilterSelect label="Platform" options={platformOptions} />
-        <Button size="lg" className="h-11 w-full md:w-auto">
-          <Plus />
-          New post
-        </Button>
+        <NewPostDialog />
       </div>
     </div>
   );

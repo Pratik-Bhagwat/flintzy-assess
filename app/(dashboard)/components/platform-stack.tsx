@@ -1,13 +1,7 @@
 import Image from "next/image";
 
+import { platformConfig } from "@/lib/platforms";
 import type { Platform } from "@/lib/posts";
-
-const platformConfig: Record<Platform, { label: string; icon: string }> = {
-  x: { label: "X", icon: "/LogosX.svg" },
-  facebook: { label: "Facebook", icon: "/LogosFacebook.svg" },
-  tiktok: { label: "TikTok", icon: "/LogosTiktokIcon.svg" },
-  instagram: { label: "Instagram", icon: "/LogosInstagramIcon.svg" },
-};
 
 export const PlatformStack = ({ platforms }: { platforms: Platform[] }) => (
   <ul className="flex -space-x-1.5" aria-label="Platforms">
