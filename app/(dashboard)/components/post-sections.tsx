@@ -5,9 +5,9 @@ import { useMemo, useSyncExternalStore } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { filterPosts, hasActiveFilters } from "@/lib/post-filters";
 import { groupUpcomingPosts } from "@/lib/post-groups";
-import type { Post } from "@/lib/posts";
 
 import { PostSection } from "./post-section";
+import { usePosts } from "@/contexts/post-context";
 import { usePostFilters } from "@/hooks/use-post-filters";
 import { CalendarClock, Search } from "lucide-react";
 import { PostCardSkeleton } from "./post-card";
@@ -59,7 +59,8 @@ const EmptyPostSkeleton = ({ isFiltered }: { isFiltered: boolean }) => {
   );
 };
 
-export const PostSections = ({ posts }: { posts: Post[] }) => {
+export const PostSections = () => {
+  const { posts } = usePosts();
   const timeZone = useTimeZone();
   const { q, status, platform } = usePostFilters();
   const isFiltered = hasActiveFilters({ q, status, platform });

@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import type { Post } from "@/lib/posts";
 
 import { PostCard } from "./post-card";
+import { usePosts } from "@/contexts/post-context";
 
 type PostSectionProps = {
   title: string;
@@ -30,6 +31,7 @@ export const PostSection = ({
   defaultOpen = false,
 }: PostSectionProps) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const { retries, retryPost } = usePosts();
   const ToggleIcon = isOpen ? ChevronsUp : ChevronsDown;
 
   return (
@@ -58,7 +60,7 @@ export const PostSection = ({
           {posts.length}
         </span>
 
-        <span className="h-px min-w-2 flex-1 bg-border" />
+        <span className="h-px min-w-4 flex-1 bg-border" />
 
         <span className="flex shrink-0 items-center gap-1 text-xs font-semibold text-muted-foreground sm:gap-1.5 sm:text-sm">
           <ToggleIcon className="size-4" />
@@ -71,7 +73,13 @@ export const PostSection = ({
       <CollapsibleContent>
         <div className="grid gap-4 pt-3 sm:grid-cols-2 xl:grid-cols-3">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} timeZone={timeZone} />
+            <PostCard
+              key={post.id}
+              post={post}
+              timeZone={timeZone}
+              retry={retries[post.id]}
+              onRetry={retryPost}
+            />
           ))}
         </div>
       </CollapsibleContent>

@@ -1,12 +1,14 @@
 import Image from "next/image";
-import { Quote } from "lucide-react";
+import { LoaderCircle, Quote, RotateCcw } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { formatPostTime } from "@/lib/post-groups";
 import type { Post, PostStatus } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 
 import { PlatformStack } from "./platform-stack";
-import { Skeleton } from "@/components/ui/skeleton";
+import type { RetryState } from "@/contexts/post-context";
 
 const statusStyles: Record<PostStatus, { label: string; className: string }> = {
   scheduled: {
@@ -73,17 +75,23 @@ export const PostCardSkeleton = () => {
   );
 };
 
-export const PostCard = ({
-  post,
-  timeZone,
-}: {
+type PostCardProps = {
   post: Post;
   timeZone: string;
-}) => {
+  retry?: RetryState;
+  onRetry?: (post: Post) => void;
+};
+
+export const PostCard = ({ post, timeZone, retry, onRetry }: PostCardProps) => {
   const hasMedia = Boolean(post.mediaUrl);
+  const isPending = Boolean(retry?.pending);
+  const errorText = retry?.error ?? post.errorMessage;
 
   return (
-    <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-sm">
+    <article
+      aria-busy={isPending}
+      className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-sm"
+    >
       {hasMedia ? (
         <div className="relative aspect-video shrink-0 bg-muted">
           <Image
@@ -98,9 +106,9 @@ export const PostCard = ({
           </div>
         </div>
       ) : (
-        <div className="relative flex aspect-video shrink-0 flex-col justify-between gap-3 overflow-hidden bg-muted/60 p-5">
+        <div className="relative flex min-h-52 shrink-0 flex-col gap-3 overflow-hidden bg-muted/60 p-4 sm:aspect-video sm:min-h-0 sm:justify-between sm:p-5">
           <div className="flex items-start justify-between gap-3">
-            <span className="flex size-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
               <Quote className="size-4" />
             </span>
             <StatusBadge status={post.status} />
@@ -131,16 +139,41 @@ export const PostCard = ({
           </p>
         )}
 
-        {post.status === "failed" && post.errorMessage && (
-          <p className="rounded-md bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950 dark:text-red-300">
-            {post.errorMessage}
+        {post.status === "failed" && errorText && (
+          <p
+            role={retry?.error ? "alert" : undefined}
+            className="rounded-md bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950 dark:text-red-300"
+          >
+            {errorText}
           </p>
         )}
 
         <div className="mt-auto border-t border-border pt-3">
-          <span className="text-sm font-semibold text-foreground">
-            {formatPostTime(post.scheduledAt, timeZone)}
-          </span>
+          <div className="flex min-h-8 items-center justify-between gap-2">
+            <span className="text-sm font-semibold text-foreground">
+              {formatPostTime(post.scheduledAt, timeZone)}
+            </span>
+
+            {isPending ? (
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <LoaderCircle className="size-3.5 animate-spin" />
+                Publishing…
+              </span>
+            ) : (
+              post.status === "failed" &&
+              onRetry && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => onRetry(post)}
+                >
+                  <RotateCcw />
+                  Retry
+                </Button>
+              )
+            )}
+          </div>
         </div>
       </div>
     </article>
