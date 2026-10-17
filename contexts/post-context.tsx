@@ -4,13 +4,14 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
   type ReactNode,
 } from "react";
 
-import type { Post } from "@/lib/posts";
+import type { NewPost, Post } from "@/lib/posts";
 import { publishPost } from "@/lib/publish-post";
 
 export type RetryState = { pending: boolean; error?: string };
@@ -19,7 +20,13 @@ type PostsContextValue = {
   posts: Post[];
   retries: Record<string, RetryState>;
   retryPost: (post: Post) => Promise<void>;
+  addPost: (input: NewPost) => Post;
+  lastAddedId: string | null;
 };
+
+const HIGHLIGHT_MS = 4000;
+
+const createPostId = () => `post-${crypto.randomUUID()}`;
 
 const PostsContext = createContext<PostsContextValue | null>(null);
 
@@ -32,7 +39,33 @@ export const PostsProvider = ({
 }) => {
   const [posts, setPosts] = useState(initialPosts);
   const [retries, setRetries] = useState<Record<string, RetryState>>({});
+  const [lastAddedId, setLastAddedId] = useState<string | null>(null);
   const inFlight = useRef(new Set<string>());
+  const highlightTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => () => clearTimeout(highlightTimer.current), []);
+
+  const addPost = useCallback((input: NewPost): Post => {
+    const post: Post = {
+      ...input,
+      id: createPostId(),
+      status: "scheduled",
+      errorMessage: null,
+    };
+
+    setPosts((prev) => [...prev, post]);
+
+    setLastAddedId(post.id);
+
+    clearTimeout(highlightTimer.current);
+
+    highlightTimer.current = setTimeout(
+      () => setLastAddedId(null),
+      HIGHLIGHT_MS,
+    );
+
+    return post;
+  }, []);
 
   const retryPost = useCallback(async (original: Post) => {
     const { id } = original;
@@ -74,8 +107,8 @@ export const PostsProvider = ({
   }, []);
 
   const value = useMemo(
-    () => ({ posts, retries, retryPost }),
-    [posts, retries, retryPost],
+    () => ({ posts, retries, retryPost, addPost, lastAddedId }),
+    [posts, retries, retryPost, addPost, lastAddedId],
   );
 
   return (

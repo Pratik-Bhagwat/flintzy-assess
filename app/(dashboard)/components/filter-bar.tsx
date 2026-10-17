@@ -18,7 +18,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { hasActiveFilters } from "@/lib/post-filters";
+import { filterPosts, hasActiveFilters } from "@/lib/post-filters";
+import type { NewPost } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 
 import {
@@ -28,6 +29,7 @@ import {
 } from "./filter-options";
 import { NewPostDialog } from "./composer/new-post-dialog";
 import { setFilterParams, usePostFilters } from "@/hooks/use-post-filters";
+import { usePosts } from "@/contexts/post-context";
 
 const noFocusRing =
   "has-[[data-slot=input-group-control]:focus-visible]:border-border has-[[data-slot=input-group-control]:focus-visible]:ring-0";
@@ -105,6 +107,7 @@ const FilterSelect = ({
 
 export const FilterBar = () => {
   const filters = usePostFilters();
+  const { addPost } = usePosts();
 
   const [query, setQuery] = useState(filters.q);
 
@@ -119,6 +122,12 @@ export const FilterBar = () => {
   };
 
   const isFiltered = hasActiveFilters({ ...filters, q: query });
+
+  const handleSchedule = (newPost: NewPost) => {
+    const post = addPost(newPost);
+
+    if (filterPosts([post], { ...filters, q: query }).length === 0) clearAll();
+  };
 
   return (
     <div className="flex w-full flex-col gap-2">
@@ -138,7 +147,7 @@ export const FilterBar = () => {
             value={filters.platform}
             onChange={(platform) => setFilterParams({ platform })}
           />
-          <NewPostDialog />
+          <NewPostDialog onSchedule={handleSchedule} />
         </div>
       </div>
 

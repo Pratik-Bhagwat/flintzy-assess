@@ -75,22 +75,35 @@ export const PostCardSkeleton = () => {
   );
 };
 
+export const postCardId = (postId: string) => `post-card-${postId}`;
+
 type PostCardProps = {
   post: Post;
   timeZone: string;
   retry?: RetryState;
   onRetry?: (post: Post) => void;
+  highlight?: boolean;
 };
 
-export const PostCard = ({ post, timeZone, retry, onRetry }: PostCardProps) => {
+export const PostCard = ({
+  post,
+  timeZone,
+  retry,
+  onRetry,
+  highlight = false,
+}: PostCardProps) => {
   const hasMedia = Boolean(post.mediaUrl);
   const isPending = Boolean(retry?.pending);
   const errorText = retry?.error ?? post.errorMessage;
 
   return (
     <article
+      id={postCardId(post.id)}
       aria-busy={isPending}
-      className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-sm"
+      className={cn(
+        "flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-sm",
+        highlight && "ring-2 ring-primary/50",
+      )}
     >
       {hasMedia ? (
         <div className="relative aspect-video shrink-0 bg-muted">
@@ -98,6 +111,7 @@ export const PostCard = ({ post, timeZone, retry, onRetry }: PostCardProps) => {
             src={post.mediaUrl!}
             alt="Post media"
             fill
+            unoptimized
             sizes="(min-width: 1280px) 30vw, (min-width: 640px) 45vw, 100vw"
             className="object-cover"
           />
@@ -106,9 +120,9 @@ export const PostCard = ({ post, timeZone, retry, onRetry }: PostCardProps) => {
           </div>
         </div>
       ) : (
-        <div className="relative flex min-h-52 shrink-0 flex-col gap-3 overflow-hidden bg-muted/60 p-4 sm:aspect-video sm:min-h-0 sm:justify-between sm:p-5">
+        <div className="relative flex aspect-video shrink-0 flex-col justify-between gap-3 overflow-hidden bg-muted/60 p-5">
           <div className="flex items-start justify-between gap-3">
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
+            <span className="flex size-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
               <Quote className="size-4" />
             </span>
             <StatusBadge status={post.status} />
@@ -118,7 +132,7 @@ export const PostCard = ({ post, timeZone, retry, onRetry }: PostCardProps) => {
             {post.content}
           </p>
 
-          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             Text post
           </span>
         </div>

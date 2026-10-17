@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronsDown, ChevronsUp } from "lucide-react";
 
 import {
@@ -8,11 +8,10 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import type { Post } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 
-import type { Post } from "@/lib/posts";
-
-import { PostCard } from "./post-card";
+import { PostCard, postCardId } from "./post-card";
 import { usePosts } from "@/contexts/post-context";
 
 type PostSectionProps = {
@@ -30,13 +29,29 @@ export const PostSection = ({
   timeZone,
   defaultOpen = false,
 }: PostSectionProps) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-  const { retries, retryPost } = usePosts();
+  const { retries, retryPost, lastAddedId } = usePosts();
+  const hasNewPost =
+    lastAddedId !== null && posts.some((post) => post.id === lastAddedId);
+
+  const [isOpen, setIsOpen] = useState(defaultOpen || hasNewPost);
+  const [seenAddedId, setSeenAddedId] = useState(lastAddedId);
   const ToggleIcon = isOpen ? ChevronsUp : ChevronsDown;
+
+  if (lastAddedId !== seenAddedId) {
+    setSeenAddedId(lastAddedId);
+    if (hasNewPost) setIsOpen(true);
+  }
+
+  useEffect(() => {
+    if (!hasNewPost || !isOpen || !lastAddedId) return;
+    document
+      .getElementById(postCardId(lastAddedId))
+      ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [hasNewPost, isOpen, lastAddedId]);
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
-      <CollapsibleTrigger className="flex w-full min-w-0 cursor-pointer items-center gap-2 rounded-md py-1 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring/50 sm:gap-2.5">
+      <CollapsibleTrigger className="flex w-full min-w-0 cursor-pointer items-center gap-2.5 rounded-md py-1 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring/50">
         <span className="flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-card">
           <ChevronDown
             className={cn(
@@ -79,6 +94,7 @@ export const PostSection = ({
               timeZone={timeZone}
               retry={retries[post.id]}
               onRetry={retryPost}
+              highlight={post.id === lastAddedId}
             />
           ))}
         </div>

@@ -13,4 +13,9 @@ export type Post = {
   errorMessage: string | null;
 };
 
+export type NewPost = Pick<
+  Post,
+  "content" | "platforms" | "mediaUrl" | "scheduledAt"
+>;
+
 export const getPosts = () => postsData as Post[];
