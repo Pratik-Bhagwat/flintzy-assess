@@ -16,6 +16,9 @@ const dayKey = (date: Date, timeZone: string) =>
     day: "2-digit",
   }).format(date);
 
+export const isFutureDay = (iso: string, timeZone: string, now = new Date()) =>
+  dayKey(new Date(iso), timeZone) > dayKey(now, timeZone);
+
 const addDays = (key: string, days: number) => {
   const [y, m, d] = key.split("-").map(Number);
   return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10);

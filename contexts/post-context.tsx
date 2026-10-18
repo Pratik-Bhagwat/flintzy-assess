@@ -12,7 +12,7 @@ import {
 } from "react";
 
 import type { NewPost, Post } from "@/lib/posts";
-import { publishPost } from "@/lib/publish-post";
+import { getRetryStatus, retryRequest } from "@/lib/retry-post";
 
 export type RetryState = { pending: boolean; error?: string };
 
@@ -85,12 +85,14 @@ export const PostsProvider = ({
         return next;
       });
 
-    replacePost({ ...original, status: "published", errorMessage: null });
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const nextStatus = getRetryStatus(original, timeZone);
 
+    replacePost({ ...original, status: nextStatus, errorMessage: null });
     setRetry({ pending: true });
 
     try {
-      replacePost(await publishPost(original));
+      replacePost(await retryRequest(original, nextStatus));
       setRetry(null);
     } catch (error) {
       replacePost(original);

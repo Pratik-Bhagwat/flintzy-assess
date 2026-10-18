@@ -171,7 +171,7 @@ export const PostCard = ({
             {isPending ? (
               <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <LoaderCircle className="size-3.5 animate-spin" />
-                Publishing…
+                {post.status === "scheduled" ? "Scheduling…" : "Publishing…"}
               </span>
             ) : (
               post.status === "failed" &&

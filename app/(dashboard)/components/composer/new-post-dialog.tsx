@@ -164,7 +164,7 @@ const NewPostForm = ({ variant, onSchedule, onDone }: NewPostFormProps) => {
         isDrawer ? "flex min-h-0 flex-1 flex-col" : "grid",
       )}
     >
-      <Header className="flex-row border-b border-border py-4 pl-4">
+      <Header className="flex-row border-b gap-2 border-border py-4 pl-4">
         <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary">
           <PenLine className="size-4 text-accent" />
         </div>
