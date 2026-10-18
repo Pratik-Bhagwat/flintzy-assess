@@ -6,7 +6,7 @@ posts, search and filter them, write a new post, and retry posts that failed.
 **Built with:** Next.js (App Router), React, Tailwind CSS v4, shadcn/ui and
 lucide-react icons.
 
-Live demo: [https://YOUR-LIVE-URL](https://postify-sooty.vercel.app/)
+Live demo: (https://postify-sooty.vercel.app/)
 ---
 
 ## 1. How to run the app
