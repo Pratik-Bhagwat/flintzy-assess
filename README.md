@@ -119,9 +119,6 @@ Filters (search, status, platform)  <---->  the page URL
   never go out of sync. The active tab comes from the URL.
 - **The menus live in the layout.** When you change page, only the content
   changes. The sidebar and bottom bar stay put.
-- **The bottom bar covers the last post if there is no space for it,** so the
-  layout adds extra space at the bottom on small screens. We also removed a fixed
-  `h-screen` height that broke this.
 
 ### Posts and dates
 - **Posts are grouped by day.** Today is open. Tomorrow and later days are
